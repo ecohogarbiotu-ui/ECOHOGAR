@@ -3,51 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda Ecohogar</title>
+  <title>Tienda Ecohogar Biotu-UI</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0fdf4;
-      color: #222;
-      text-align: center;
+      background-color: #ffc0cb; /* Fondo rosado */
       margin: 0;
       padding: 0;
     }
+
     header {
-      background-color: #3ca374;
+      background-color: #e60073; /* Fucsia */
       color: white;
-      padding: 20px;
-      font-size: 1.8em;
+      text-align: center;
+      padding: 15px;
     }
-    section {
-      padding: 20px;
+
+    header img {
+      width: 100px;
+      border-radius: 50%;
     }
-    img {
-      width: 200px;
-      margin: 10px;
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    main {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      background: white;
       border-radius: 12px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 15px;
     }
+
+    .producto img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #e60073;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #cc0066;
+    }
+
+    #carrito {
+      background-color: white;
+      margin: 20px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #e60073;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
   </style>
 </head>
 <body>
   <header>
-    🌿 Tienda EcoHogar 🌿<br>
-    Productos de aseo biodegradables para el hogar
+    <img src="logo.png" alt="Logo Tienda Ecohogar">
+    <h1>Tienda Ecohogar Biotu-UI</h1>
+    <p>Productos biodegradables para el hogar</p>
   </header>
 
-  <section>
-    <h2>Nuestros Productos</h2>
-    <p>Conoce algunos de nuestros artículos ecológicos:</p>
-    <img src="BOLSA MULTIUSOS.JPG" alt="Bolsa Multiusos">
-    <img src="BOTELLA.JPG" alt="Botella Biodegradable">
-    <img src="CAJA LAVALOZA.JPG" alt="Caja Lavaloza">
-    <p>Más productos próximamente 🌱</p>
+  <main id="lista-productos">
+    <!-- Los productos se cargarán automáticamente aquí -->
+  </main>
+
+  <section id="carrito">
+    <h2>🛒 Carrito de Compras</h2>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total:</strong> $<span id="total">0</span></p>
+    <button onclick="generarFactura()">Generar factura y pagar con Nequi</button>
   </section>
 
-  <footer style="background:#3ca374; color:white; padding:10px;">
-    © 2025 EcoHogar Biotu-UI
+  <footer>
+    © 2025 Tienda Ecohogar Biotu-UI - Todos los derechos reservados
   </footer>
+
+  <script>
+    const productos = [
+      { nombre: "Bolsa Lávaloza", imagen: "BOLSA LAVALOZA.JPG", precio: 5000 },
+      { nombre: "Bolsa Multiusos", imagen: "BOLSA MULTIUSOS.JPG", precio: 7000 },
+      { nombre: "Botella Biodegradable", imagen: "BOTELLA.JPG", precio: 12000 },
+      { nombre: "Caja Suavizante", imagen: "CAJA SUAVIZANTE.JPG", precio: 10000 },
+      { nombre: "Bolsa Ropa Blanca", imagen: "BOLSA ROPA BLANCA.JPG", precio: 6000 },
+      { nombre: "Bolsa Ropa Color", imagen: "BOLSA ROPA COLOR.JPG", precio: 6000 },
+      { nombre: "Delicade", imagen: "DELICADE.JPG", precio: 8000 },
+      { nombre: "Aconcagua", imagen: "ACONCAGUA.JPG", precio: 9000 },
+      { nombre: "Amanecer", imagen: "AMANECER.JPG", precio: 9500 },
+    ];
+
+    const listaProductos = document.getElementById("lista-productos");
+    const listaCarrito = document.getElementById("lista-carrito");
+    const totalSpan = document.getElementById("total");
+    let carrito = [];
+    
+    function mostrarProductos() {
+      productos.forEach(p => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+          <img src="${p.imagen}" alt="${p.nombre}">
+          <h3>${p.nombre}</h3>
+          <p><strong>$${p.precio}</strong></p>
+          <input type="number" id="cant-${p.nombre}" value="1" min="1" style="width:50px;">
+          <button onclick="agregarCarrito('${p.nombre}', ${p.precio})">Agregar al carrito</button>
+        `;
+        listaProductos.appendChild(div);
+      });
+    }
+
+    function agregarCarrito(nombre, precio) {
+      const cantidad = parseInt(document.getElementById(cant-${nombre}).value);
+      carrito.push({ nombre, precio, cantidad });
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      listaCarrito.innerHTML = "";
+      let total = 0;
+      carrito.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${item.cantidad} x ${item.nombre} - $${item.precio * item.cantidad} 
+        <button onclick="eliminarItem(${index})">❌</button>`;
+        listaCarrito.appendChild(li);
+        total += item.precio * item.cantidad;
+      });
+      totalSpan.textContent = total;
+    }
+
+    function eliminarItem(index) {
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function generarFactura() {
+      if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+      }
+      let factura = "FACTURA DE COMPRA\n\n";
+      let total = 0;
+      carrito.forEach(p => {
+        factura += ${p.cantidad} x ${p.nombre} - $${p.precio * p.cantidad}\n;
+        total += p.precio * p.cantidad;
+      });
+      factura += \nTOTAL: $${total}\n\nPor favor realiza tu pago al número Nequi: 3201234567\nLuego envía tu comprobante por WhatsApp para confirmar el pedido.;
+      alert(factura);
+      carrito = [];
+      actualizarCarrito();
+    }
+
+    mostrarProductos();
+  </script>
 </body>
 </html>
 Actualización del diseño principal
