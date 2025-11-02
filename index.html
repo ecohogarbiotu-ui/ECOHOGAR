@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda Rosalba y Más</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌸 Tienda Rosalba y Más 🌸</h1>
+    <button id="verCarrito">🛒 Ver Carrito</button>
+  </header>
+
+  <main>
+    <section id="productos"></section>
+  </main>
+
+  <!-- Modal carrito -->
+  <div id="modalCarrito" class="modal">
+    <div class="modal-contenido">
+      <h2>Tu carrito de compras</h2>
+      <ul id="listaCarrito"></ul>
+      <p><strong>Total:</strong> $<span id="total">0</span></p>
+      <form id="formCliente">
+        <h3>Datos del comprador</h3>
+        <input type="text" id="nombre" placeholder="Nombre completo" required />
+        <input type="text" id="direccion" placeholder="Dirección" required />
+        <input type="tel" id="celular" placeholder="Celular" required />
+        <button type="button" id="pagarNequi">💸 Pagar con Nequi</button>
+        <button type="button" id="pedidoListo">✅ Pedido listo</button>
+      </form>
+      <button id="cerrarCarrito">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
