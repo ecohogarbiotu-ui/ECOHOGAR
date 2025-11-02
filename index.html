@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tienda Rosalba y Más</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Ecohogar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fdf4;
+      color: #222;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #3ca374;
+      color: white;
+      padding: 20px;
+      font-size: 1.8em;
+    }
+    section {
+      padding: 20px;
+    }
+    img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>🌸 Tienda Rosalba y Más 🌸</h1>
-    <button id="verCarrito">🛒 Ver Carrito</button>
+    🌿 Tienda EcoHogar 🌿<br>
+    Productos de aseo biodegradables para el hogar
   </header>
 
-  <main>
-    <section id="productos"></section>
-  </main>
+  <section>
+    <h2>Nuestros Productos</h2>
+    <p>Conoce algunos de nuestros artículos ecológicos:</p>
+    <img src="BOLSA MULTIUSOS.JPG" alt="Bolsa Multiusos">
+    <img src="BOTELLA.JPG" alt="Botella Biodegradable">
+    <img src="CAJA LAVALOZA.JPG" alt="Caja Lavaloza">
+    <p>Más productos próximamente 🌱</p>
+  </section>
 
-  <!-- Modal carrito -->
-  <div id="modalCarrito" class="modal">
-    <div class="modal-contenido">
-      <h2>Tu carrito de compras</h2>
-      <ul id="listaCarrito"></ul>
-      <p><strong>Total:</strong> $<span id="total">0</span></p>
-      <form id="formCliente">
-        <h3>Datos del comprador</h3>
-        <input type="text" id="nombre" placeholder="Nombre completo" required />
-        <input type="text" id="direccion" placeholder="Dirección" required />
-        <input type="tel" id="celular" placeholder="Celular" required />
-        <button type="button" id="pagarNequi">💸 Pagar con Nequi</button>
-        <button type="button" id="pedidoListo">✅ Pedido listo</button>
-      </form>
-      <button id="cerrarCarrito">Cerrar</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <footer style="background:#3ca374; color:white; padding:10px;">
+    © 2025 EcoHogar Biotu-UI
+  </footer>
 </body>
 </html>
+Actualización del diseño principal
